@@ -1,5 +1,7 @@
 const express = require('express');
 const { Configuration, OpenAIApi } = require('openai');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const configuration = new Configuration({
   organization: 'org-9lPC7LJ7FIiEdhazHxmwnnaS',
@@ -11,6 +13,8 @@ const openai = new OpenAIApi(configuration);
 // create a simple edxpress api that calls the function above
 
 const app = express();
+app.use(bodyParser.json());
+app.use(cors());
 
 const port = 3080;
 
