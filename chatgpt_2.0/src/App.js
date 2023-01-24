@@ -10,6 +10,11 @@ function App() {
       user: 'gpt',
       message: 'How can i help you today?',
     },
+
+    {
+      user: 'me',
+      message: 'This is the user',
+    },
   ]);
 
   async function handleSubmit(e) {
@@ -31,13 +36,6 @@ function App() {
           {chatLog.map((message, index) => (
             <ChatMessage key={index} message={message} />
           ))}
-
-          <div className='chat-message chatgpt'>
-            <div className='chat-message-center'>
-              <div className='avatar chatgpt'></div>
-              <div className='message'>This is 2.0</div>
-            </div>
-          </div>
         </div>
         <div className='chat-input-holder'>
           <form onSubmit={handleSubmit}>
@@ -56,10 +54,10 @@ function App() {
 
 const ChatMessage = ({ message }) => {
   return (
-    <div className={`chat-message ${message.user == 'gpt' && 'chatgpt'}`}>
+    <div className={`chat-message ${message.user === 'gpt' && 'chatgpt'}`}>
       <div className='chat-message-center'>
-        <div className={`avatar ${message.user == 'gpt' && 'chatgpt'}`}>
-          {message.user == 'gpt' && (
+        <div className={`avatar ${message.user === 'gpt' && 'chatgpt'}`}>
+          {message.user === 'gpt' && (
             <svg
               width={41}
               height={41}
