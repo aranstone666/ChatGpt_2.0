@@ -13,14 +13,18 @@ function App() {
 
     {
       user: 'me',
-      message: 'This is the user',
+      message: 'I want to use ChatGpt',
     },
   ]);
 
+  function clearChat() {
+    setChatLog([]);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
-    setChatLog([...chatLog, { user: 'me', message: `${input}` }]);
-    setInput('');
+    await setChatLog([...chatLog, { user: 'me', message: `${input}` }]);
+    await setInput('');
 
     const response = await fetch('http://localhost:3080/', {
       method: 'POST',
@@ -38,7 +42,7 @@ function App() {
   return (
     <div className='App'>
       <aside className='sidemenu'>
-        <div className='side-menu-button'>
+        <div className='side-menu-button' onClick={clearChat}>
           <span>+</span>
           New Chat
         </div>
